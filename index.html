@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="stylesheet" href="/styles.css">
+  <script defer src="/script.js"></script>
+  <title>Frontend Mentor | Time tracking dashboard</title>
+
+
+</head>
+
+<body>
+  <main>
+    <header>
+      <img src="./images/image-jeremy.png" alt="" />
+      <div class="header-title">
+        <span>Report for</span>
+        <h1>Jeremy Robson</h1>
+      </div>
+    </header>
+    <nav>
+      <ul>
+        <li><button>Daily</button></li>
+        <li><button class="active">Weekly</button></li>
+        <li><button>Monthly</button></li>
+      </ul>
+    </nav>
+    <section>
+      <ul class="cards">
+        <li class="card">
+          <div class="card__topper work">
+            <img src="/images/icon-work.svg" alt="briefcase icon" />
+          </div>
+          <div class="card__category">
+            <h2>Work </h2><img src="/images/icon-ellipsis.svg" alt="ellipsis">
+          </div>
+          <p class="card__time">4hrs <span>Last Week - 10hrs</span></p>
+        </li>
+        <li class="card-wrapper exercise">
+          <img src="/images/icon-exercise.svg" alt="briefcase icon">
+          <div class="card">
+            <div class="category">
+              <h2>Exercise </h2><img src="/images/icon-ellipsis.svg" alt="ellipsis">
+            </div>
+            <p>4hrs <span>Last Week - 9hrs</span></p>
+          </div>
+        </li>
+      </ul>
+    </section>
+  </main>
+</body>
+
+</html>
