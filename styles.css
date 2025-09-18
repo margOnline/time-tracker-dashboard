@@ -130,6 +130,7 @@ li.card {
 
 .category-name {
   font-size: var(--text-preset-5);
+  font-weight: 400;
 }
 .current-timings {
   font-size: var(--text-preset-4);
