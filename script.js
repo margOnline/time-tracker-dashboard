@@ -41,56 +41,45 @@ async function renderTrackingDashboard() {
     })
     .then((data) => {
       const cards = document.querySelector('.cards')
-      const dashboard = document.querySelector('.dashboard-template')
+
       data.forEach((activity) => {
-        const cardTemplate = dashboard.content.cloneNode(true)
-        const cardCategory = activity.title.toLowerCase().replaceAll(' ', '-')
-        const cardTopperImg = cardTemplate.querySelector('.card-topper img')
+        const cardTemplate = document
+          .querySelector('.dashboard-template')
+          .content.cloneNode(true)
 
-        cardTopperImg.src = `images/icon-${cardCategory}.svg`
-        cardTopperImg.alt = `${activity.title}`
-        cardTemplate.querySelector('.category-name').textContent =
-          activity.title
-        cardTemplate.querySelector('li.card').className = `card ${cardCategory}`
-
-        Object.entries(timePeriods).forEach((period) => {
-          cardTemplate.querySelector(
-            `.current-timings .${period[0]}`
-          ).textContent = `${activity.timeframes[period[0]].current}hrs`
-
-          cardTemplate.querySelector(
-            `.previous-timings .${period[0]}`
-          ).textContent = `${period[1]} - ${
-            activity.timeframes[period[0]].previous
-          }hrs`
-        })
+        setupCardTemplate(cardTemplate, activity)
+        insertActivityHours(cardTemplate, activity)
 
         cards.appendChild(cardTemplate)
       })
     })
-
-  // try {
-  //   const response = await fetch('/data.json')
-  //   const data = await response.json()
-  //   renderCards(data)
-  // } catch (err) {
-  //   console.log('Error fetching data')
-  // }
 }
 
-// function renderCards(data) {
-//   const dashboard = document.querySelector('.dashboard-template')
-//   data.forEach((activity) => {
-//     const card = createCard(activity)
-//     dashboard.appendChild(card)
-//   })
-// }
+function setupCardTemplate(cardTemplate, activity) {
+  const cardCategory = activity.title.toLowerCase().replaceAll(' ', '-')
+  const cardTopperImg = cardTemplate.querySelector('.card-topper img')
 
-// function createCard(activity) {
-//   console.log('activilty: ', activity)
-//   const card = document.querySelector('li.card')
-//   const cardBanner = card.querySelector('.banner')
-//   card.classList.add(activity.title)
-// }
+  cardTopperImg.src = `images/icon-${cardCategory}.svg`
+  cardTopperImg.alt = `${activity.title}`
+  cardTemplate.querySelector('.category-name').textContent = activity.title
+  cardTemplate.querySelector('li.card').className = `card ${cardCategory}`
+}
+
+function insertActivityHours(cardTemplate, activity) {
+  Object.entries(timePeriods).forEach((period) => {
+    const currentHours = formatHours(activity.timeframes[period[0]].current)
+    cardTemplate.querySelector(`.current-timings .${period[0]}`).textContent =
+      currentHours
+
+    const previousHours = formatHours(activity.timeframes[period[0]].previous)
+    cardTemplate.querySelector(
+      `.previous-timings .${period[0]}`
+    ).textContent = `${period[1]} - ${previousHours}`
+  })
+}
+
+function formatHours(number) {
+  return number > 1 ? `${number}hrs` : `${number}hr`
+}
 
 renderTrackingDashboard()
