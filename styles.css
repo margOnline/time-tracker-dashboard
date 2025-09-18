@@ -187,15 +187,7 @@ button {
 .self-care {
   background-color: var(--yellow-300);
 }
-[data-current-tab='daily'] :is(.current-time, .previous-time) :not(.daily) {
-  display: none;
-}
-[data-current-tab='weekly'] :is(.current-time, .previous-time) :not(.weekly) {
-  display: none;
-}
-[data-current-tab='monthly'] :is(.current-time, .previous-time) :not(.monthly) {
-  display: none;
-}
+
 @media (min-width: 30rem) {
   .cards {
     display: grid;
@@ -206,7 +198,7 @@ button {
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
   }
-  .category-name{
+  .category-name {
     font-size: var(--text-preset-6);
   }
   .timings {
