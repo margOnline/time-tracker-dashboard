@@ -25,13 +25,13 @@
     </header>
     <nav>
       <ul>
-        <li><button id="dailyViewBtn">Daily</button></li>
-        <li><button id="weeklyViewBtn" class="active">Weekly</button></li>
-        <li><button id="monthlyViewBtn">Monthly</button></li>
+        <li><button id="dailyViewBtn" aria-pressed="false">Daily</button></li>
+        <li><button id="weeklyViewBtn" aria-pressed="true">Weekly</button></li>
+        <li><button id="monthlyViewBtn" aria-pressed="false">Monthly</button></li>
       </ul>
     </nav>
     <section>
-      <ul class="cards" data-current-tab="weekly"></ul>
+      <ul class="cards"></ul>
       <template class="dashboard-template">
         <li class="card">
           <div class="card-topper"><img src="" alt=""></div>
@@ -43,14 +43,14 @@
 
             <div class="timings">
               <p class="current-timings">
-                <span class="daily"></span>
+                <span class="daily hidden"></span>
                 <span class="weekly"></span>
-                <span class="monthly"></span>
+                <span class="monthly hidden"></span>
               </p>
               <p class="previous-timings">
-                <span class="daily"></span>
+                <span class="daily hidden"></span>
                 <span class="weekly"></span>
-                <span class="monthly"></span>
+                <span class="monthly hidden"></span>
               </p>
             </div>
         </li>

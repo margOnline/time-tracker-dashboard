@@ -102,7 +102,7 @@ nav li button {
   border: none;
 }
 nav li button:hover,
-.active {
+[aria-pressed='true'] {
   color: var(--white);
 }
 .cards {
@@ -164,8 +164,8 @@ button {
   justify-self: end;
   font-size: 0.75rem;
 }
-.daily,
-.monthly {
+.hidden {
+  /* margin-inline-start: 1500px; */
   display: none;
 }
 

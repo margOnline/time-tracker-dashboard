@@ -4,16 +4,31 @@ const timePeriods = {
   'monthly': 'Last Month',
 }
 
-Object.entries(timePeriods).forEach((period) => {
-  document
-    .querySelector(`#${period[0]}ViewBtn`)
-    .addEventListener('click', () => toggleTimePeriodView(period[0]))
+Object.keys(timePeriods).forEach((period) => {
+  document.querySelector(`#${period}ViewBtn`).addEventListener('click', () => {
+    toggleTimePeriodBtn(period)
+    toggleTimePeriodData(period)
+  })
 })
 
-function toggleTimePeriodView(period) {
-  console.log('in toggle: ', period)
-  const currentView = document.querySelector('[data-current-tab]')
-  currentView.attributes['data-current-tab'].value = period
+function toggleTimePeriodBtn(period) {
+  document.querySelectorAll('nav button').forEach((button) => {
+    if (button.textContent.toLowerCase() === period) {
+      button.attributes['aria-pressed'].value = true
+    } else {
+      button.attributes['aria-pressed'].value = false
+    }
+  })
+}
+
+function toggleTimePeriodData(period) {
+  document.querySelectorAll('.timings p span').forEach((span) => {
+    if (Array.from(span.classList).includes(period)) {
+      span.classList.remove('hidden')
+    } else {
+      span.classList.add('hidden')
+    }
+  })
 }
 
 async function renderTrackingDashboard() {
@@ -31,10 +46,11 @@ async function renderTrackingDashboard() {
         const cardTemplate = dashboard.content.cloneNode(true)
         const cardCategory = activity.title.toLowerCase().replaceAll(' ', '-')
         const cardTopperImg = cardTemplate.querySelector('.card-topper img')
-        const cardTitleElement = cardTemplate.querySelector('.category-name')
-        cardTitleElement.textContent = activity.title
+
         cardTopperImg.src = `images/icon-${cardCategory}.svg`
         cardTopperImg.alt = `${activity.title}`
+        cardTemplate.querySelector('.category-name').textContent =
+          activity.title
         cardTemplate.querySelector('li.card').className = `card ${cardCategory}`
 
         Object.entries(timePeriods).forEach((period) => {
@@ -48,9 +64,6 @@ async function renderTrackingDashboard() {
             activity.timeframes[period[0]].previous
           } hrs`
         })
-
-        console.log('activity: ', activity)
-        console.log('cardCategory: ', cardCategory)
 
         cards.appendChild(cardTemplate)
       })
