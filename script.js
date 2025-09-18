@@ -14,9 +14,9 @@ Object.keys(timePeriods).forEach((period) => {
 function toggleTimePeriodBtn(period) {
   document.querySelectorAll('nav button').forEach((button) => {
     if (button.textContent.toLowerCase() === period) {
-      button.attributes['aria-pressed'].value = true
+      button.setAttribute('aria-pressed', true)
     } else {
-      button.attributes['aria-pressed'].value = false
+      button.setAttribute('aria-pressed', false)
     }
   })
 }
@@ -32,31 +32,31 @@ function toggleTimePeriodData(period) {
 }
 
 async function renderTrackingDashboard() {
-  await fetch('data.json')
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error('Error fetching data')
-      }
-      return response.json()
+  try {
+    const response = await fetch('data.json')
+    if (!response.ok) {
+      throw new Error('Error fetching data')
+    }
+    const data = await response.json()
+    const cards = document.querySelector('.cards')
+
+    data.forEach((activity) => {
+      const cardTemplate = document
+        .querySelector('.dashboard-template')
+        .content.cloneNode(true)
+
+      setupCardTemplate(cardTemplate, activity)
+      insertActivityHours(cardTemplate, activity)
+
+      cards.appendChild(cardTemplate)
     })
-    .then((data) => {
-      const cards = document.querySelector('.cards')
-
-      data.forEach((activity) => {
-        const cardTemplate = document
-          .querySelector('.dashboard-template')
-          .content.cloneNode(true)
-
-        setupCardTemplate(cardTemplate, activity)
-        insertActivityHours(cardTemplate, activity)
-
-        cards.appendChild(cardTemplate)
-      })
-    })
+  } catch (error) {
+    console.error('Error rendering dashboard: ', error)
+  }
 }
 
 function setupCardTemplate(cardTemplate, activity) {
-  const cardCategory = activity.title.toLowerCase().replaceAll(' ', '-')
+  const cardCategory = activity.title.toLowerCase().replace(/ /g, '-')
   const cardTopperImg = cardTemplate.querySelector('.card-topper img')
 
   cardTopperImg.src = `images/icon-${cardCategory}.svg`
