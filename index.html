@@ -25,32 +25,36 @@
     </header>
     <nav>
       <ul>
-        <li><button>Daily</button></li>
-        <li><button class="active">Weekly</button></li>
-        <li><button>Monthly</button></li>
+        <li><button id="dailyViewBtn">Daily</button></li>
+        <li><button id="weeklyViewBtn" class="active">Weekly</button></li>
+        <li><button id="monthlyViewBtn">Monthly</button></li>
       </ul>
     </nav>
     <section>
-      <ul class="cards">
+      <ul class="cards" data-current-tab="weekly"></ul>
+      <template class="dashboard-template">
         <li class="card">
-          <div class="card__topper work">
-            <img src="/images/icon-work.svg" alt="briefcase icon" />
-          </div>
-          <div class="card__category">
-            <h2>Work </h2><img src="/images/icon-ellipsis.svg" alt="ellipsis">
-          </div>
-          <p class="card__time">4hrs <span>Last Week - 10hrs</span></p>
-        </li>
-        <li class="card-wrapper exercise">
-          <img src="/images/icon-exercise.svg" alt="briefcase icon">
-          <div class="card">
-            <div class="category">
-              <h2>Exercise </h2><img src="/images/icon-ellipsis.svg" alt="ellipsis">
+          <div class="card-topper"><img src="" alt=""></div>
+          <div class="card-content">
+            <div class="card-title">
+              <p class="category-name"></p>
+              <div class="ellipsis"><img src="images/icon-ellipsis.svg" alt="3 dots"></div>
             </div>
-            <p>4hrs <span>Last Week - 9hrs</span></p>
-          </div>
+
+            <div class="timings">
+              <p class="current-timings">
+                <span class="daily"></span>
+                <span class="weekly"></span>
+                <span class="monthly"></span>
+              </p>
+              <p class="previous-timings">
+                <span class="daily"></span>
+                <span class="weekly"></span>
+                <span class="monthly"></span>
+              </p>
+            </div>
         </li>
-      </ul>
+      </template>
     </section>
   </main>
 </body>

@@ -106,81 +106,105 @@ nav li button:hover,
   color: var(--white);
 }
 .cards {
+  padding-inline-start: 0;
   display: contents;
 }
 .card {
-  border-radius: 1rem;
-  margin-block-end: 2rem;
-  background-color: var(--navy-900);
-  border-radius: 2rem;
-  padding-block: 2rem;
+  border-radius: 1em;
+  font-size: 1.125em;
+  overflow: hidden;
+  color: white;
 }
-.card__topper {
-  position: relative;
-  border-radius: 2rem 2rem 0 0;
+.card-topper {
+  padding-inline: 1em;
   display: flex;
-  justify-content: flex-end;
-  padding-inline: 1rem;
+  justify-content: end;
+  max-block-size: 2.5em;
 }
-.card__topper > img {
-  display: block;
+.card-topper img {
   object-fit: cover;
-  width: 4.5rem;
-  height: 4.5rem;
-  position: absolute;
-  bottom: 1rem;
 }
-.card__category,
-.card__time {
+
+.category-name {
+  font-size: var(--text-preset-5);
+}
+.current-timings {
+  font-size: var(--text-preset-4);
+}
+.card-title {
+  padding-inline: 2rem;
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
+}
+.card-content {
+  background-color: var(--navy-900);
+  padding-block-start: 2rem;
+  border-radius: 1rem 1rem 0 0;
+}
+.timings {
+  padding-inline: 2rem;
+  padding-block-end: 2rem;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  margin-inline-start: 2rem;
 }
-.card__category {
-  margin-bottom: 1rem;
-}
-.card__category h2 {
-  font-size: var(--text-preset-5);
-  font-weight: 400;
-}
-.card__category > img {
-  margin-inline-start: auto;
-  margin-inline-end: 2rem;
-}
-.card__time {
-  font-size: var(--text-preset-3);
+.active-time {
   font-weight: 300;
+  font-size: 2em;
 }
-.card__time > span {
-  font-size: var(--text-preset-5);
+button {
+  background: none;
+  border: none;
+  justify-self: end;
   color: var(--navy-200);
-  margin-inline-start: auto;
-  margin-inline-end: 2rem;
+}
+.previous-timings {
+  color: var(--navy-200);
+  font-weight: 300;
+  justify-self: end;
+  font-size: 0.75rem;
+}
+.daily,
+.monthly {
+  display: none;
 }
 
 .work {
-  border-top: 6rem solid var(--orange-300);
+  background-color: var(--orange-300);
 }
 .play {
-  border-top: 6rem solid var(--blue-300);
+  background-color: var(--blue-300);
 }
 .study {
-  border-top: 6rem solid var(--pink-400);
+  background-color: var(--pink-400);
 }
 .exercise {
-  border-top: 6rem solid var(--green-400);
+  background-color: var(--green-400);
 }
 .social {
-  border-top: 6rem solid var(--purple-600);
+  background-color: var(--purple-600);
 }
 .self-care {
-  border-top: 6rem solid var(--yellow-300);
+  background-color: var(--yellow-300);
 }
-
+[data-current-tab='daily'] :is(.current-time, .previous-time) :not(.daily) {
+  display: none;
+}
+[data-current-tab='weekly'] :is(.current-time, .previous-time) :not(.weekly) {
+  display: none;
+}
+[data-current-tab='monthly'] :is(.current-time, .previous-time) :not(.monthly) {
+  display: none;
+}
 @media (min-width: 60rem) {
   main {
     max-width: 62.5rem;
     margin: auto;
+  }
+}
+@media screen and (min-width: 1128px) {
+  :not(button) {
+    grid-column: 1;
+    justify-self: start;
   }
 }
