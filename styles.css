@@ -59,7 +59,7 @@ img {
   max-width: 100%;
 }
 main {
-  margin-block-start: var(--spacing-500);
+  margin: 10rem auto;
   width: 100%;
 }
 h1 {
@@ -211,7 +211,6 @@ button {
 @media (min-width: 60rem) {
   main {
     max-width: 62.5rem;
-    margin: 5rem auto;
     display: grid;
     grid-template-columns: 1fr 3fr;
     gap: 1rem;
@@ -223,7 +222,7 @@ button {
     grid-row: 1/4;
   }
   header img {
-    margin-right: auto;
+    margin-inline-end: auto;
   }
   nav {
     grid-column: 1/2;
@@ -244,9 +243,3 @@ button {
     grid-row: 1/5;
   }
 }
-/* @media screen and (min-width: 1128px) {
-  :not(button) {
-    grid-column: 1;
-    justify-self: start;
-  }
-} */
