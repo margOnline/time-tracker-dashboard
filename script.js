@@ -66,15 +66,15 @@ function setupCardTemplate(cardTemplate, activity) {
 }
 
 function insertActivityHours(cardTemplate, activity) {
-  Object.entries(timePeriods).forEach((period) => {
-    const currentHours = formatHours(activity.timeframes[period[0]].current)
-    cardTemplate.querySelector(`.current-timings .${period[0]}`).textContent =
+  Object.entries(timePeriods).forEach(([period, label]) => {
+    const currentHours = formatHours(activity.timeframes[period].current)
+    cardTemplate.querySelector(`.current-timings .${period}`).textContent =
       currentHours
 
-    const previousHours = formatHours(activity.timeframes[period[0]].previous)
+    const previousHours = formatHours(activity.timeframes[period].previous)
     cardTemplate.querySelector(
-      `.previous-timings .${period[0]}`
-    ).textContent = `${period[1]} - ${previousHours}`
+      `.previous-timings .${period}`
+    ).textContent = `${label} - ${previousHours}`
   })
 }
 
