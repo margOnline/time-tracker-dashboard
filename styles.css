@@ -115,6 +115,9 @@ nav li button:hover,
   overflow: hidden;
   color: white;
 }
+li.card {
+  border-radius: 1rem;
+}
 .card-topper {
   padding-inline: 1em;
   display: flex;
@@ -139,7 +142,7 @@ nav li button:hover,
 .card-content {
   background-color: var(--navy-900);
   padding-block-start: 2rem;
-  border-radius: 1rem 1rem 0 0;
+  border-radius: 1rem;
 }
 .timings {
   padding-inline: 2rem;
@@ -194,10 +197,6 @@ button {
     grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
   }
-  li.card {
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-  }
   .category-name {
     font-size: var(--text-preset-6);
   }
@@ -212,18 +211,42 @@ button {
 @media (min-width: 60rem) {
   main {
     max-width: 62.5rem;
-    margin: auto;
+    margin: 5rem auto;
     display: grid;
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: 1fr 3fr;
+    gap: 1rem;
   }
   header {
+    display: flex;
+    flex-direction: column;
     grid-column: 1/2;
-    grid-row: 1/3;
+    grid-row: 1/4;
+  }
+  header img {
+    margin-right: auto;
+  }
+  nav {
+    grid-column: 1/2;
+    grid-row: 4/5;
+    margin-block-start: -1rem;
+  }
+  nav ul {
+    flex-direction: column;
+    padding-block: 0;
+
+    border-radius: 1rem;
+  }
+  nav li {
+    padding: 1rem 2rem;
+  }
+  section {
+    grid-column: 2/5;
+    grid-row: 1/5;
   }
 }
-@media screen and (min-width: 1128px) {
+/* @media screen and (min-width: 1128px) {
   :not(button) {
     grid-column: 1;
     justify-self: start;
   }
-}
+} */
