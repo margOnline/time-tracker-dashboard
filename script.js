@@ -56,13 +56,13 @@ async function renderTrackingDashboard() {
         Object.entries(timePeriods).forEach((period) => {
           cardTemplate.querySelector(
             `.current-timings .${period[0]}`
-          ).textContent = `${activity.timeframes[period[0]].current} hrs`
+          ).textContent = `${activity.timeframes[period[0]].current}hrs`
 
           cardTemplate.querySelector(
             `.previous-timings .${period[0]}`
           ).textContent = `${period[1]} - ${
             activity.timeframes[period[0]].previous
-          } hrs`
+          }hrs`
         })
 
         cards.appendChild(cardTemplate)
