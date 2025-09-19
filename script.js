@@ -23,7 +23,7 @@ function toggleTimePeriodBtn(period) {
 
 function toggleTimePeriodData(period) {
   document.querySelectorAll('.timings p span').forEach((span) => {
-    if (Array.from(span.classList).includes(period)) {
+    if (span.classList.contains(period)) {
       span.classList.remove('hidden')
     } else {
       span.classList.add('hidden')
